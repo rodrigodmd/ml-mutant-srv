@@ -11,29 +11,23 @@ import (
 func main() {
 	// Create API service
 	service := web.NewService(
-		web.Name("go.micro.api.mutant"),
+		web.Name("go.micro.api.api"),
 	)
 
 	service.Init()
 
 	wc := restful.NewContainer()
 	// Create RESTful handler
-	say := handler.Dna{}
+	dna := new(handler.Dna)
 
-	ws1 := restful.WebService{}
-	ws1.Consumes(restful.MIME_XML, restful.MIME_JSON)
-	ws1.Produces(restful.MIME_JSON, restful.MIME_XML)
-	ws1.Path("/mutant")
-	ws1.Route(ws1.POST("/").To(say.IsMutant))
+	ws := new(restful.WebService)
+	ws.Consumes(restful.MIME_JSON, restful.MIME_XML)
+	ws.Produces(restful.MIME_JSON, restful.MIME_XML)
+	ws.Path("/api")
+	ws.Route(ws.POST("/mutant").To(dna.Mutant))
+	ws.Route(ws.GET("/stats").To(dna.Stat))
 
-	ws2 := restful.WebService{}
-	ws2.Consumes(restful.MIME_XML, restful.MIME_JSON)
-	ws2.Produces(restful.MIME_JSON, restful.MIME_XML)
-	ws2.Path("/stat")
-	ws2.Route(ws1.POST("/").To(say.Stat))
-
-	wc.Add(&ws1)
-	wc.Add(&ws2)
+	wc.Add(ws)
 
 	// Register Handler
 	service.Handle("/", wc)

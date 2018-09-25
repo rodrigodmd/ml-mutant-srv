@@ -6,29 +6,39 @@ import (
 	"log"
 
 	restful "github.com/emicklei/go-restful"
-	mutant "github.com/rodrigodmd/ml-mutant-srv/mutant/proto/mutant"
 	"github.com/micro/go-micro/client"
+	mutant "github.com/rodrigodmd/ml-mutant-srv/mutant/proto/mutant"
+	stats "github.com/rodrigodmd/ml-mutant-srv/stats/proto/stats"
 )
 
 type Dna struct{}
 
+var (
+	clMutant mutant.DnaService
+	clStats  stats.DnaService
+)
 
-var cl mutant.DnaService
-
-func init(){
+func init() {
 	// setup mutant Server Client
-	cl = mutant.NewDnaService("go.micro.srv.mutant", client.DefaultClient)
+	clMutant = mutant.NewDnaService("go.micro.srv.mutant", client.DefaultClient)
+	clStats = stats.NewDnaService("go.micro.srv.stats", client.DefaultClient)
 }
 
 func (s *Dna) Stat(req *restful.Request, rsp *restful.Response) {
-	log.Print("Received Dna.Anything API request")
-	rsp.WriteEntity(map[string]string{
-		"message": "Hi, this is the Greeter API",
-	})
+	log.Print("Received Stat API request")
+
+	response, err := clStats.Stats(context.TODO(), &stats.Request{})
+	if err != nil {
+		log.Print(err)
+		rsp.WriteError(500, err)
+		return
+	}
+	log.Print(response)
+	rsp.WriteEntity(*response)
 }
 
-func (s *Dna) IsMutant(req *restful.Request, rsp *restful.Response) {
-	log.Print("Received Dna.Hello API request")
+func (s *Dna) Mutant(req *restful.Request, rsp *restful.Response) {
+	log.Print("Received Mutant API request")
 
 	dna := mutant.Request{}
 
@@ -38,7 +48,7 @@ func (s *Dna) IsMutant(req *restful.Request, rsp *restful.Response) {
 		return
 	}
 
-	response, err := cl.IsMutant(context.TODO(), &dna)
+	response, err := clMutant.IsMutant(context.TODO(), &dna)
 	if err != nil {
 		rsp.WriteError(500, err)
 		return

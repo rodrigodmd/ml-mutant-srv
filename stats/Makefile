@@ -6,6 +6,7 @@ GOPATH:=$(shell go env GOPATH)
 
 proto:
 	protoc --proto_path=${GOPATH}/src:. --micro_out=. --go_out=. proto/stats/stats.proto
+	protoc --proto_path=${GOPATH}/src:. --micro_out=. --go_out=. proto/elastic/elastic.proto
 
 build: proto
 

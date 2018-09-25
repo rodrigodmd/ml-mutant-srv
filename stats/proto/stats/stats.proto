@@ -17,12 +17,13 @@ message Message {
 }
 
 message Request {
-	bool isMutant = 1;
-	repeated string dna=2;
+	string msg = 1;
 }
 
 message Response {
-	string msg = 1;
+	int64 count_mutant_dna = 1;
+	int64 count_human_dna = 2;
+	float ratio = 3;
 }
 
 // message StreamingRequest {

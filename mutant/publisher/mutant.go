@@ -2,9 +2,9 @@ package publisher
 
 import (
 	"context"
+	"log"
 	"time"
 
-	"github.com/go-log/log"
 	"github.com/google/uuid"
 	micro "github.com/micro/go-micro"
 	"github.com/micro/go-micro/client"
@@ -22,20 +22,22 @@ func NewPublisher(cl client.Client) {
 }
 
 func SendDna(dna *[]string, isMutant bool) {
+	log.Print("publishing")
 	uuid, _ := uuid.NewUUID()
 
 	ev := &mutant.Message{
 		Id:        uuid.String(),
 		Timestamp: time.Now().Unix(),
-		Dna: *dna,
-		IsMutant: isMutant,
+		Dna:       *dna,
+		IsMutant:  isMutant,
 	}
-
-	log.Logf("publishing %+v\n", ev)
+	log.Print("publishing")
+	//log.Log("publishing %+v\n", ev)
 
 	// publish an event
 	if err := pub.Publish(context.Background(), ev); err != nil {
-		log.Logf("error publishing %v", err)
+		log.Print(err)
+		//	log.Logf("error publishing %v", err)
 	}
 
 }

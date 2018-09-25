@@ -24,6 +24,15 @@ services:
       - consul
     ports:
     - "8082:8082"
+
+  elasticsearch:
+    image: elasticsearch:1.7.1
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      ES_HEAP_SIZE: 512m
+      ES_CLUSTER_NAME: Kazoup
     
   # pubsub:
   #   image: google/cloud-sdk
