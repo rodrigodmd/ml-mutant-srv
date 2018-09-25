@@ -7,7 +7,12 @@ service Dna {
 }
 
 message Message {
-	string say = 1;
+	// unique id
+	string id = 1;
+	// unix timestamp
+	int64 timestamp = 2;
+	bool isMutant = 3;
+    repeated string dna=4;
 }
 
 message Request {

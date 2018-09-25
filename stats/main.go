@@ -1,12 +1,11 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	//	"github.com/micro/go-log"
 	"github.com/micro/go-micro"
-	"github.com/micro/go-micro/broker"
+
 	// To enable rabbitmq plugin uncomment
 	//_ "github.com/micro/go-plugins/broker/rabbitmq"
 	// To enable googlepubsub plugin uncomment
@@ -14,22 +13,24 @@ import (
 	// To enable kafka plugin uncomment
 	//_ "github.com/micro/go-plugins/broker/kafka"
 	//"github.com/micro/go-plugins/broker/kafka"
+	"github.com/micro/go-micro/server"
+	"github.com/rodrigodmd/ml-mutant-srv/stats/subscriber"
 )
 
-var (
-	topic = "go.micro.topic.foo"
-)
+// var (
+// 	topic = "go.micro.topic.foo"
+// )
 
 // Example of a shared subscription which receives a subset of messages
-func sharedSub() {
-	_, err := broker.Subscribe(topic, func(p broker.Publication) error {
-		fmt.Println("[sub] received message:", string(p.Message().Body), "header", p.Message().Header)
-		return nil
-	}, broker.Queue("consumer"))
-	if err != nil {
-		fmt.Println(err)
-	}
-}
+// func sharedSub() {
+// 	_, err := broker.Subscribe(topic, func(p broker.Publication) error {
+// 		fmt.Println("[sub] received message:", string(p.Message().Body), "header", p.Message().Header)
+// 		return nil
+// 	}, broker.Queue("consumer"))
+// 	if err != nil {
+// 		fmt.Println(err)
+// 	}
+// }
 
 func main() {
 
@@ -54,17 +55,20 @@ func main() {
 	// Register Struct as Subscriber
 	//micro.RegisterSubscriber("go.micro.srv.stats", service.Server(), new(subscriber.Example))
 
+	// register subscriber with queue, each message is delivered to a unique subscriber
+	micro.RegisterSubscriber("go.micro.topic.mutant", service.Server(), subscriber.Handler, server.SubscriberQueue("queue.pubsub"))
+
 	// Register Function as Subscriber
 	//micro.RegisterSubscriber("go.micro.srv.stats", service.Server(), subscriber.Handler)
 
-	if err := broker.Init(); err != nil {
-		log.Fatalf("Broker Init error: %v", err)
-	}
-	if err := broker.Connect(); err != nil {
-		log.Fatalf("Broker Connect error: %v", err)
-	}
+	// if err := broker.Init(); err != nil {
+	// 	log.Fatalf("Broker Init error: %v", err)
+	// }
+	// if err := broker.Connect(); err != nil {
+	// 	log.Fatalf("Broker Connect error: %v", err)
+	// }
 
-	sharedSub()
+	// sharedSub()
 
 	// Run service
 	if err := service.Run(); err != nil {

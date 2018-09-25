@@ -8,6 +8,7 @@ import (
 
 	mlmutant "github.com/rodrigodmd/ml-mutant"
 	mutant "github.com/rodrigodmd/ml-mutant-srv/mutant/proto/mutant"
+	"github.com/rodrigodmd/ml-mutant-srv/mutant/publisher"
 )
 
 type Mutant struct{}
@@ -17,6 +18,9 @@ func (e *Mutant) IsMutant(ctx context.Context, req *mutant.Request, rsp *mutant.
 	log.Log("Received IsMutant request")
 	log.Log(req.Dna)
 	isMutant, err := mlmutant.IsMutant(req.Dna)
+
+	publisher.SendDna(&req.Dna, isMutant)
+
 	if err != nil {
 		log.Log(err)
 		rsp.IsMutant = false
@@ -26,6 +30,7 @@ func (e *Mutant) IsMutant(ctx context.Context, req *mutant.Request, rsp *mutant.
 		rsp.IsMutant = isMutant
 		rsp.Msg = "Resuls: " + strconv.FormatBool(isMutant)
 	}
+
 
 	return nil
 }
