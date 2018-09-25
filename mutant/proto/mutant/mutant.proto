@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package go.micro.srv.mutant;
+
+service Dna {
+	rpc IsMutant(Request) returns (Response) {}
+}
+
+message Message {
+	string say = 1;
+}
+
+message Request {
+	repeated string dna=1;
+}
+
+message Response {
+	bool isMutant = 1;
+	string msg = 2;
+}
+
