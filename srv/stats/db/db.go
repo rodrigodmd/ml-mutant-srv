@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/rodrigodmd/ml-mutant-srv/stats/elastic"
-	proto "github.com/rodrigodmd/ml-mutant-srv/stats/proto/elastic"
+	"github.com/rodrigodmd/ml-mutant-srv/srv/stats/elastic"
+	proto "github.com/rodrigodmd/ml-mutant-srv/srv/stats/proto/elastic"
 )
 
 const (

@@ -7,8 +7,8 @@ import (
 
 	restful "github.com/emicklei/go-restful"
 	"github.com/micro/go-micro/client"
-	mutant "github.com/rodrigodmd/ml-mutant-srv/mutant/proto/mutant"
-	stats "github.com/rodrigodmd/ml-mutant-srv/stats/proto/stats"
+	mutant "github.com/rodrigodmd/ml-mutant-srv/srv/mutant/proto/mutant"
+	stats "github.com/rodrigodmd/ml-mutant-srv/srv/stats/proto/stats"
 )
 
 type Dna struct{}

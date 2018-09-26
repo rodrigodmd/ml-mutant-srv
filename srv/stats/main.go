@@ -7,10 +7,10 @@ import (
 	"github.com/micro/go-log"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/server"
-	"github.com/rodrigodmd/ml-mutant-srv/stats/elastic"
-	"github.com/rodrigodmd/ml-mutant-srv/stats/handler"
-	stats "github.com/rodrigodmd/ml-mutant-srv/stats/proto/stats"
-	"github.com/rodrigodmd/ml-mutant-srv/stats/subscriber"
+	"github.com/rodrigodmd/ml-mutant-srv/srv/stats/elastic"
+	"github.com/rodrigodmd/ml-mutant-srv/srv/stats/handler"
+	stats "github.com/rodrigodmd/ml-mutant-srv/srv/stats/proto/stats"
+	"github.com/rodrigodmd/ml-mutant-srv/srv/stats/subscriber"
 	// To enable rabbitmq plugin uncomment
 	//_ "github.com/micro/go-plugins/broker/rabbitmq"
 	// To enable googlepubsub plugin uncomment

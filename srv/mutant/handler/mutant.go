@@ -7,8 +7,8 @@ import (
 	"github.com/micro/go-log"
 
 	mlmutant "github.com/rodrigodmd/ml-mutant"
-	mutant "github.com/rodrigodmd/ml-mutant-srv/mutant/proto/mutant"
-	"github.com/rodrigodmd/ml-mutant-srv/mutant/publisher"
+	mutant "github.com/rodrigodmd/ml-mutant-srv/srv/mutant/proto/mutant"
+	"github.com/rodrigodmd/ml-mutant-srv/srv/mutant/publisher"
 )
 
 type Mutant struct{}

@@ -4,15 +4,15 @@ import (
 	"log"
 	//"github.com/micro/go-log"
 	"github.com/micro/go-micro"
-	"github.com/rodrigodmd/ml-mutant-srv/mutant/handler"
+	"github.com/rodrigodmd/ml-mutant-srv/srv/mutant/handler"
 
-	mutant "github.com/rodrigodmd/ml-mutant-srv/mutant/proto/mutant"
+	mutant "github.com/rodrigodmd/ml-mutant-srv/srv/mutant/proto/mutant"
 	// To enable rabbitmq plugin uncomment
 	//_ "github.com/micro/go-plugins/broker/rabbitmq"
 	// To enable googlepubsub plugin uncomment
 	//_ "github.com/micro/go-plugins/broker/googlepubsub"
 	// To enable kafka plugin uncomment
-	"github.com/rodrigodmd/ml-mutant-srv/mutant/publisher"
+	"github.com/rodrigodmd/ml-mutant-srv/srv/mutant/publisher"
 )
 
 func main() {

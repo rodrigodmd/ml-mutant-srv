@@ -38,14 +38,14 @@ services:
   # DNA Mutant microservices
   mutant:
     image: rodrigodmd/ml-mutant-srv:mutant
-    build: ./mutant
+    build: ./srv/mutant
     command: --registry_address=consul:8500 --register_interval=5 --register_ttl=10
     links:
       - consul
 
   stats:
     image: rodrigodmd/ml-mutant-srv:stats
-    build: ./stats
+    build: ./srv/stats
     command: --registry_address=consul:8500 --register_interval=5 --register_ttl=10 --elasticsearch_hosts=elasticsearch:9200
     links:
       - consul
@@ -53,7 +53,7 @@ services:
 
   gateway:
     image: rodrigodmd/ml-mutant-srv:gateway
-    build: ./gateway
+    build: ./srv/gateway
     command: --registry_address=consul:8500 --register_interval=5 --register_ttl=10
     links:
       - consul

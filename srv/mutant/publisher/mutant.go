@@ -8,7 +8,7 @@ import (
 	"github.com/google/uuid"
 	micro "github.com/micro/go-micro"
 	"github.com/micro/go-micro/client"
-	mutant "github.com/rodrigodmd/ml-mutant-srv/mutant/proto/mutant"
+	mutant "github.com/rodrigodmd/ml-mutant-srv/srv/mutant/proto/mutant"
 )
 
 var (

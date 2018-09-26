@@ -4,9 +4,9 @@ import (
 	"context"
 	"log"
 
-	"github.com/rodrigodmd/ml-mutant-srv/stats/db"
+	"github.com/rodrigodmd/ml-mutant-srv/srv/stats/db"
 
-	stats "github.com/rodrigodmd/ml-mutant-srv/stats/proto/stats"
+	stats "github.com/rodrigodmd/ml-mutant-srv/srv/stats/proto/stats"
 )
 
 type Dna struct{}

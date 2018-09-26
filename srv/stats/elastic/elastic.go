@@ -6,7 +6,7 @@ import (
 	"fmt"
 
 	lib "github.com/mattbaird/elastigo/lib"
-	proto "github.com/rodrigodmd/ml-mutant-srv/stats/proto/elastic"
+	proto "github.com/rodrigodmd/ml-mutant-srv/srv/stats/proto/elastic"
 )
 
 var (

@@ -5,7 +5,7 @@ import (
 
 	"github.com/emicklei/go-restful"
 	"github.com/micro/go-web"
-	"github.com/rodrigodmd/ml-mutant-srv/gateway/handler"
+	"github.com/rodrigodmd/ml-mutant-srv/srv/gateway/handler"
 )
 
 func main() {
