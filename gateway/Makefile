@@ -5,10 +5,11 @@ GOPATH:=$(shell go env GOPATH)
 
 
 build:
-	go build -o mutant-srv main.go plugin.go
+	go build -o gateway-srv main.go plugin.go
 
 test:
 	go test -v ./... -cover
 
 docker:
-	docker build . -t mutant-srv:latest
+	docker build -t rodrigodmd/ml-mutant-srv:gateway .
+	docker push rodrigodmd/ml-mutant-srv:gateway

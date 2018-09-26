@@ -2,7 +2,7 @@
 FROM rodrigodmd/ml-mutant-srv:base
 
 ENV REPO_DIR $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv
-ENV APP_DIR $REPO_DIR/stats
+ENV APP_DIR $REPO_DIR/gateway
 
 # Clean service dir
 RUN rm -rf $APP_DIR && mkdir $APP_DIR

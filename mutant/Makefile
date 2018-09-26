@@ -9,10 +9,11 @@ proto:
 
 build: proto
 
-	go build -o mutant-srv main.go plugin.go
+	go build -o mutant-srv main.go
 
 test:
 	go test -v ./... -cover
 
 docker:
-	docker build . -t mutant-srv:latest
+	docker build -t rodrigodmd/ml-mutant-srv:mutant .
+	docker push rodrigodmd/ml-mutant-srv:mutant
