@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.16.0 ()
+  creationTimestamp: null
+  labels:
+    io.kompose.service: consul
+  name: consul
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: consul
+    spec:
+      containers:
+      - args:
+        - agent
+        - -dev
+        - -client
+        - 0.0.0.0
+        image: consul:latest
+        name: consul
+        ports:
+        - containerPort: 8300
+        - containerPort: 8400
+        - containerPort: 8500
+        - containerPort: 53
+          protocol: UDP
+        resources: {}
+      restartPolicy: Always
+status: {}
