@@ -1,53 +1,31 @@
-# Mutant Service
-
-This is the Mutant service
-
-Generated with
-
-```
-micro new github.com/rodrigodmd/mutant --namespace=go.micro --type=srv
-```
+# Go Gateway Microservice
 
 ## Getting Started
 
-- [Configuration](#configuration)
-- [Dependencies](#dependencies)
-- [Usage](#usage)
+If you haven't done it yet, follow the [getting started](https://github.com/rodrigodmd/ml-mutant-srv#getting-started) guide
 
-## Configuration
+# Development process
 
-- FQDN: go.micro.srv.mutant
-- Type: srv
-- Alias: mutant
+Run the services with docker-compose:
 
-## Dependencies
+    cd $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv/srv
+    docker-compose up
 
-Micro services depend on service discovery. The default is consul.
+Run each service manually:
 
-```
-# install consul
-brew install consul
+### gateway
 
-# run consul
-consul agent -dev
-```
+    cd $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv/srv/gateway
+    go run main.go
 
-## Usage
+### stats
 
-A Makefile is included for convenience
+    cd $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv/srv/stats
+    go run main.go
 
-Build the binary
+### mutant
 
-```
-make build
-```
+    cd $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv/srv/mutant
+    go run main.go
 
-Run the service
-```
-./mutant-srv
-```
 
-Build a docker image
-```
-make docker
-```

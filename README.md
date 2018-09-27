@@ -73,14 +73,13 @@ Local endpoints:
 You can also play with the go micro development web: http://localhost:8082
 
 ![Web 1](doc/web1.png)
-
 ![Web 2](doc/web2.png)
 
 Congratulations! Now you are ready to work in each micro service:
 
-* gateway
-* mutant
-* stats
+* [gateway](srv/gateway)
+* [mutant](srv/mutant)
+* [stats](srv/stats)
 
 ### Build and push base docker image:
 
@@ -88,4 +87,4 @@ Congratulations! Now you are ready to work in each micro service:
 
 ## Deploymeny
 
-Go to [deploy section](./deploy).
+Go to [deployment section](deploy).

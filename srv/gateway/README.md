@@ -1,42 +1,31 @@
-# Go Restful API Example
-
-This is an example of how to serve REST behind the API using go-restful
+# Go Gateway Microservice
 
 ## Getting Started
 
-### Run the Micro API
+If you haven't done it yet, follow the [getting started](https://github.com/rodrigodmd/ml-mutant-srv#getting-started) guide
 
-```
-$ micro api --handler=http
-```
+# Development process
 
-### Run the Greeter Service
+Run the services with docker-compose:
 
-```
-$ go run greeter/server/main.go
-```
+    cd $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv/srv
+    docker-compose up
 
-### Run the Greeter API
+Run each service manually:
 
-```
-$ go run go-restful.go
-Listening on [::]:64738
-```
+### gateway
 
-### Curl the API
+    cd $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv/srv/gateway
+    go run main.go
 
-Test the index
-```
-curl http://localhost:8080/greeter
-{
-  "message": "Hi, this is the Greeter API"
-}
-```
+### stats
 
-Test a resource
-```
- curl http://localhost:8080/greeter/asim
-{
-  "msg": "Hello asim"
-}
-```
+    cd $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv/srv/stats
+    go run main.go
+
+### mutant
+
+    cd $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv/srv/mutant
+    go run main.go
+
+
