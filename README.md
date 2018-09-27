@@ -1,4 +1,4 @@
-# Go Microservice Restful API  ![Go Report Card](https://goreportcard.com/badge/github.com/rodrigodmd/ml-mutant-srv)
+# Go Microservice Restful API  # ML Mutant excercise [![Go Report Card](https://goreportcard.com/badge/github.com/rodrigodmd/ml-mutant-srv)](https://goreportcard.com/report/github.com/rodrigodmd/ml-mutant-srv) [![GoDoc](https://godoc.org/github.com/micro/go-api?status.svg)](https://godoc.org/github.com/rodrigodmd/ml-mutant-srv) [![Build Status](https://travis-ci.org/rodrigodmd/ml-mutant-srv.svg?branch=master)](https://travis-ci.org/rodrigodmd/ml-mutant-srv) [![codecov](https://codecov.io/gh/rodrigodmd/ml-mutant-srv/branch/master/graph/badge.svg)](https://codecov.io/gh/rodrigodmd/ml-mutant-srv)
 
 This is an example of how to serve REST behind the API using go-restful
 
