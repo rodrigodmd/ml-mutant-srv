@@ -35,13 +35,13 @@ services:
       - consul
     ports:
       - "8082:8082"
-  sidecar:
-    command: --registry_address=consul:8500 --register_interval=5 --register_ttl=10 sidecar
-    image: microhq/micro:latest
-    depends_on:
-      - consul
-    ports:
-      - "8081:8081"
+  # sidecar:
+  #   command: --registry_address=consul:8500 --register_interval=5 --register_ttl=10 sidecar
+  #   image: microhq/micro:latest
+  #   depends_on:
+  #     - consul
+  #   ports:
+  #     - "8081:8081"
   
   # ML Mutant microservices
   mutant:
