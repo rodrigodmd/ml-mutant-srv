@@ -32,7 +32,6 @@ func SendDna(dna *[]string, isMutant bool) {
 		IsMutant:  isMutant,
 	}
 	log.Print("publishing")
-	//log.Log("publishing %+v\n", ev)
 
 	// publish an event
 	if err := pub.Publish(context.Background(), ev); err != nil {

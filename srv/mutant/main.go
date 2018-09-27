@@ -16,13 +16,10 @@ import (
 )
 
 func main() {
-	// b := kafka.NewBroker()
-
 	// New Service
 	service := micro.NewService(
 		micro.Name("go.micro.srv.mutant"),
 		micro.Version("latest"),
-		// micro.Broker(b),
 	)
 
 	// Initialise service

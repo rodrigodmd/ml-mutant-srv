@@ -12,8 +12,11 @@ build: proto
 	go build -o mutant-srv main.go
 
 test:
-	go test -v ./... -cover
+	go test -v -coverpkg=github.com/rodrigodmd/ml-mutant-srv/srv/mutant ./...
 
-docker:
+docker-build:
 	docker build -t rodrigodmd/ml-mutant-srv:mutant .
+
+docker-push: docker-build
 	docker push rodrigodmd/ml-mutant-srv:mutant
+

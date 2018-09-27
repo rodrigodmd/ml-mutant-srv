@@ -1,8 +1,6 @@
-
 GOPATH:=$(shell go env GOPATH)
 
-.PHONY: proto test docker
-
+.PHONY: build test docker-build docker-push
 
 build:
 	go build -o gateway-srv main.go plugin.go
@@ -10,6 +8,8 @@ build:
 test:
 	go test -v ./... -cover
 
-docker:
+docker-build:
 	docker build -t rodrigodmd/ml-mutant-srv:gateway .
+
+docker-push: docker-build
 	docker push rodrigodmd/ml-mutant-srv:gateway
