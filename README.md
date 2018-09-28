@@ -1,4 +1,4 @@
-# Mutant solution with Go-Micro [![Go Report Card](https://goreportcard.com/badge/github.com/rodrigodmd/ml-mutant-srv)](https://goreportcard.com/report/github.com/rodrigodmd/ml-mutant-srv) [![Build Status](https://travis-ci.org/rodrigodmd/ml-mutant-srv.svg?branch=master)](https://travis-ci.org/rodrigodmd/ml-mutant-srv) [![codecov](https://codecov.io/gh/rodrigodmd/ml-mutant-srv/branch/master/graph/badge.svg)](https://codecov.io/gh/rodrigodmd/ml-mutant-srv)
+# Mutant solution with Go-Micro [![Go Report Card](https://goreportcard.com/badge/github.com/rodrigodmd/ml-mutant-srv)](https://goreportcard.com/report/github.com/rodrigodmd/ml-mutant-srv) [![Build Status](https://travis-ci.org/rodrigodmd/ml-mutant-srv.svg?branch=master)](https://travis-ci.org/rodrigodmd/ml-mutant-srv)
 
 This repo contains an examples solution for serving microservices via the micro api. We use the following technologies:
 
