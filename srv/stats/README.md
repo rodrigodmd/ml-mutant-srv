@@ -6,26 +6,23 @@ If you haven't done it yet, follow the [getting started](https://github.com/rodr
 
 # Development process
 
-Run the services with docker-compose:
+We are going to start all the process, except for the one/s we want to work on. Comment out the gateway service from:
+*$GOPATH/src/github.com/rodrigodmd/ml-mutant-srv*
+```yml
+stats:
+    image: rodrigodmd/ml-mutant-srv:stats
+    build: ./srv/stats
+    command: --registry_address=consul:8500 --register_interval=5 --register_ttl=10
+    links:
+      - consul
+```
+Start services with docker-compose:
 
-    cd $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv/srv
+    cd $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv
     docker-compose up
 
-Run each service manually:
+Run the service with go:
 
-### gateway
-
-    cd $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv/srv/gateway
-    go run main.go
-
-### stats
-
-    cd $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv/srv/stats
-    go run main.go
-
-### mutant
-
-    cd $GOPATH/src/github.com/rodrigodmd/ml-mutant-srv/srv/mutant
-    go run main.go
-
-
+    cd srv/stats
+    make proto
+    make run

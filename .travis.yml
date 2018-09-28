@@ -8,7 +8,10 @@ before_install:
   - go get -t -v ./...
 
 script:
-  - go test ./... -race -coverprofile=coverage.txt -covermode=atomic
+  - go build srv/gateway/main.go
+  - go build srv/mutant/main.go
+  - go build srv/stats/main.go
+  # - go test ./... -race -coverprofile=coverage.txt -covermode=atomic
 
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
+# after_success:
+#   - bash <(curl -s https://codecov.io/bash)

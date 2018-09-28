@@ -1,9 +1,12 @@
 GOPATH:=$(shell go env GOPATH)
 
-.PHONY: build test docker-build docker-push
+.PHONY: run build test docker-build docker-push
+
+run:
+	go run main.go
 
 build:
-	go build -o gateway-srv main.go plugin.go
+	go build -o gateway-srv main.go
 
 test:
 	go test -v ./... -cover

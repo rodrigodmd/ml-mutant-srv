@@ -43,7 +43,7 @@ func (s *Dna) Mutant(req *restful.Request, rsp *restful.Response) {
 	dna := mutant.Request{}
 
 	if err := req.ReadEntity(&dna); err != nil {
-		log.Print("Failed read entity: %v", err)
+		log.Printf("Failed read entity: %v", err)
 		rsp.WriteError(500, err)
 		return
 	}
