@@ -70,6 +70,36 @@ Local endpoints:
     http://localhost:8080/api/mutant
     http://localhost:8080/api/stats
 
+## Try with curl
+Mutant DNA:
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{ "dna": ["ATGCAA","CAGTTT","TTATTT","AGAAGG","CCACTA","TCACTG"] }}' \
+	http://localhost:8080/api/mutant
+```
+Human DNA:
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{ "dna": ["ATGC", "CAGT", "TATT", "AGAA"] }}' \
+	http://localhost:8080/api/mutant
+```
+Invalid DNA structure:
+```bash
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{ "dna": ["ATGCAA","invalid","TTATTT","AGAAGG","CCACTA","TCACTG"] }}' \
+	http://localhost:8080/api/mutant
+```
+Get stats:
+```bash
+curl --header "Content-Type: application/json" \
+  --request GET \
+	http://localhost:8080/api/stats
+```
+
+## Try with go micro web
 You can also play with the go micro development web: http://localhost:8082
 
 ![Web 1](doc/web1.png)
@@ -81,10 +111,10 @@ Congratulations! Now you are ready to work in each micro service:
 * [mutant](srv/mutant)
 * [stats](srv/stats)
 
-### Build and push base docker image:
+## Build and push base docker image:
 
     make docker-push
 
-## Deploymeny
+# Deploymeny
 
 Go to [deployment section](deploy).
