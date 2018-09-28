@@ -19,17 +19,16 @@ func (e *Mutant) IsMutant(ctx context.Context, req *mutant.Request, rsp *mutant.
 	log.Log(req.Dna)
 	isMutant, err := mlmutant.IsMutant(req.Dna)
 
-	go publisher.SendDna(&req.Dna, isMutant)
-
 	if err != nil {
 		log.Log(err)
 		rsp.IsMutant = false
 		rsp.Msg = err.Error()
 		return err
-	} else {
-		rsp.IsMutant = isMutant
-		rsp.Msg = "Resuls: " + strconv.FormatBool(isMutant)
 	}
+
+	go publisher.SendDna(&req.Dna, isMutant)
+	rsp.IsMutant = isMutant
+	rsp.Msg = "Resuls: " + strconv.FormatBool(isMutant)
 
 	return nil
 }

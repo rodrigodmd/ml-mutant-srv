@@ -24,6 +24,7 @@ spec:
         - --register_ttl=10
         image: rodrigodmd/ml-mutant-srv:gateway
         name: gateway
+        imagePullPolicy: Always
         resources: {}
       restartPolicy: Always
 status: {}

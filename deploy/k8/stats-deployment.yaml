@@ -25,6 +25,7 @@ spec:
         - --elasticsearch_hosts=elasticsearch:9200
         image: rodrigodmd/ml-mutant-srv:stats
         name: stats
+        imagePullPolicy: Always
         resources: {}
       restartPolicy: Always
 status: {}
