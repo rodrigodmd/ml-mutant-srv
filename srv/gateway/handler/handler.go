@@ -5,10 +5,11 @@ import (
 	"errors"
 	"log"
 
-	restful "github.com/emicklei/go-restful"
+	"github.com/emicklei/go-restful"
 	"github.com/micro/go-micro/client"
 	mutant "github.com/rodrigodmd/ml-mutant-srv/srv/mutant/proto/mutant"
 	stats "github.com/rodrigodmd/ml-mutant-srv/srv/stats/proto/stats"
+	"math"
 )
 
 type Dna struct{}
@@ -34,7 +35,17 @@ func (s *Dna) Stat(req *restful.Request, rsp *restful.Response) {
 		return
 	}
 	log.Print(response)
-	rsp.WriteEntity(*response)
+
+	if math.IsNaN(float64(response.Ratio)) || response.CountHumanDna == 0 || response.CountMutantDna == 0 {
+		response.Ratio = 0
+	}
+
+	statsResponse := StatsResponse{
+		CountHumanDna:  response.CountHumanDna,
+		CountMutantDna: response.CountMutantDna,
+		Ratio:          response.Ratio,
+	}
+	rsp.WriteEntity(statsResponse)
 }
 
 func (s *Dna) Mutant(req *restful.Request, rsp *restful.Response) {

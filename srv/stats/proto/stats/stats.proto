@@ -4,13 +4,10 @@ package go.micro.srv.stats;
 
 service Dna {
 	rpc Stats(Request) returns (Response) {}
-	// rpc Stream(StreamingRequest) returns (stream StreamingResponse) {}
 }
 
 message Message {
-	// unique id
 	string id = 1;
-	// unix timestamp
 	int64 timestamp = 2;
 	bool isMutant = 3;
 	repeated string dna=4;
@@ -25,11 +22,3 @@ message Response {
 	int64 count_human_dna = 2;
 	float ratio = 3;
 }
-
-// message StreamingRequest {
-// 	int64 count = 1;
-// }
-
-// message StreamingResponse {
-// 	int64 count = 1;
-// }

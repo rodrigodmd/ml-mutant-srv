@@ -1,6 +1,20 @@
 GOPATH:=$(shell go env GOPATH)
 
-.PHONY: resolve docker-build docker-push
+.PHONY: test resolve docker-build docker-push
+
+
+docker-up:
+	docker-compose pull
+	docker-compose up -d
+	echo "Waiting for server to start..."
+	sleep 5
+
+docker-down:
+	docker-compose down
+
+integration-test: docker-up
+	go test ./test/... -v
+	docker-compose down
 
 resolve:
 	dep ensure
