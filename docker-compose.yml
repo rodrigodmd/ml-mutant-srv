@@ -20,6 +20,33 @@ services:
       ES_HEAP_SIZE: 512m
       ES_CLUSTER_NAME: Kazoup
 
+  # zookeeper and kafka as message broker
+  zoo1:
+    image: zookeeper:3.4.9
+    hostname: zoo1
+    ports:
+      - "2181:2181"
+    environment:
+        ZOO_MY_ID: 1
+        ZOO_PORT: 2181
+        ZOO_SERVERS: server.1=zoo1:2888:3888
+
+  kafka1:
+    image: confluentinc/cp-kafka:5.0.0
+    hostname: kafka1
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka1:19092,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
+      KAFKA_ZOOKEEPER_CONNECT: "zoo1:2181"
+      KAFKA_BROKER_ID: 1
+      KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    depends_on:
+      - zoo1
+
   # go-micro tools
   api:
     command: --registry_address=consul:8500 --enable_stats --register_interval=5 --register_ttl=10 api --handler=http
@@ -35,6 +62,8 @@ services:
       - consul
     ports:
       - "8082:8082"
+   
+  
   # sidecar:
   #   command: --registry_address=consul:8500 --register_interval=5 --register_ttl=10 sidecar
   #   image: microhq/micro:latest
@@ -44,20 +73,22 @@ services:
   #     - "8081:8081"
   
   # ML Mutant microservices
-  mutant:
-    image: rodrigodmd/ml-mutant-srv:mutant
-    build: ./srv/mutant
-    command: --registry_address=consul:8500 --register_interval=5 --register_ttl=10
-    links:
-      - consul
+  # mutant:
+  #   image: rodrigodmd/ml-mutant-srv:mutant
+  #   build: ./srv/mutant
+  #   command: --registry_address=consul:8500 --register_interval=5 --register_ttl=10 --broker_address=kafka1:9092 --start_wait_time=20
+  #   links:
+  #     - consul
+  #     - kafka1
 
-  stats:
-    image: rodrigodmd/ml-mutant-srv:stats
-    build: ./srv/stats
-    command: --registry_address=consul:8500 --register_interval=5 --register_ttl=10 --elasticsearch_hosts=elasticsearch:9200
-    links:
-      - consul
-      - elasticsearch
+  # stats:
+  #   image: rodrigodmd/ml-mutant-srv:stats
+  #   build: ./srv/stats
+  #   command: --registry_address=consul:8500 --register_interval=5 --register_ttl=10 --elasticsearch_hosts=elasticsearch:9200 --broker_address=kafka1:9092 --start_wait_time=20
+  #   links:
+  #     - consul
+  #     - elasticsearch
+  #     - kafka1
 
   gateway:
     image: rodrigodmd/ml-mutant-srv:gateway
